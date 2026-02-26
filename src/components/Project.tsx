@@ -1,74 +1,93 @@
 import React from "react";
-import mock01 from '../assets/images/mock01.png';
-import mock02 from '../assets/images/mock02.png';
-import mock03 from '../assets/images/mock03.png';
-import mock04 from '../assets/images/mock04.png';
-import mock05 from '../assets/images/mock05.png';
-import mock06 from '../assets/images/mock06.png';
-import mock07 from '../assets/images/mock07.png';
-import mock08 from '../assets/images/mock08.png';
-import mock09 from '../assets/images/mock09.png';
-import mock10 from '../assets/images/mock10.png';
+import cicdImg from '../assets/images/mock01.png';
+import awsImg from '../assets/images/mock02.png';
+import k8sImg from '../assets/images/mock03.png';
 import '../assets/styles/Project.scss';
+import { Chip, Button } from '@mui/material';
 
-function Project() {
-    return(
+const projects = [
+  {
+    title: "End-to-End CI/CD Pipeline for Node.js App",
+    description: "Implemented a fully automated CI/CD pipeline to streamline build, test, and deployment of a Node.js application.",
+    techStack: ["GitHub Actions", "Docker", "AWS ECS", "Terraform", "Node.js", "MongoDB", "S3"],
+    details: [
+      "Designed multi-stage GitHub Actions workflow for building, testing, and deploying code",
+      "Containerized the application using Docker for consistent environments",
+      "Provisioned AWS ECS cluster and related infrastructure with Terraform",
+      "Implemented deployment to staging and production environments automatically",
+      "Secured sensitive credentials using GitHub Secrets"
+    ],
+    image: cicdImg,
+    githubLink: "https://github.com/waleeddevops111/cicd-nodejs"
+  },
+  {
+    title: "AWS Cost Optimization Automation",
+    description: "Reduced cloud costs by ~30% using automated scripts and AWS best practices.",
+    techStack: ["AWS CLI", "Python", "Bash", "Terraform", "CloudWatch", "S3", "EC2"],
+    details: [
+      "Analyzed AWS resources to identify underutilized EC2 instances",
+      "Scheduled EC2 start/stop using Python and Bash scripts",
+      "Implemented S3 lifecycle policies for infrequently accessed objects",
+      "Monitored costs with CloudWatch and automated alerts",
+      "Applied Terraform for infrastructure provisioning and tracking changes"
+    ],
+    image: awsImg,
+    githubLink: "https://github.com/waleeddevops111/aws-cost-optimization"
+  },
+  {
+    title: "Kubernetes Cluster Deployment & Automation",
+    description: "Automated deployment and scaling of containerized applications using Kubernetes and Helm charts.",
+    techStack: ["Kubernetes", "Helm", "Docker", "AWS EKS", "Terraform", "Prometheus", "Grafana"],
+    details: [
+      "Provisioned Kubernetes clusters on AWS EKS using Terraform",
+      "Deployed microservices using Docker containers and Helm charts",
+      "Implemented auto-scaling and rolling updates for high availability",
+      "Set up Prometheus & Grafana for monitoring and alerts",
+      "Configured Ingress controllers and Load Balancers for external access"
+    ],
+    image: k8sImg,
+    githubLink: "https://github.com/waleeddevops111/k8s-project"
+  }
+];
+
+function Projects() {
+  return (
     <div className="projects-container" id="projects">
-        <h1>Personal Projects</h1>
-        <div className="projects-grid">
-            <div className="project">
-                <a href="https://www.filmate.club/" target="_blank" rel="noreferrer"><img src={mock10} className="zoom" alt="thumbnail" width="100%"/></a>
-                <a href="https://www.filmate.club/" target="_blank" rel="noreferrer"><h2>Filmate AI</h2></a>
-                <p>Developed movie finder app with semantic search and sentiment analysis using OpenAI GPT-3.5 Turbo, Qdrant, React, and Flask.</p>
+      <h1>Projects</h1>
+      <div className="projects-grid">
+        {projects.map((project, index) => (
+          <div key={index} className="project-card">
+            <img 
+              src={project.image} 
+              alt={project.title} 
+              className="zoom"
+              onClick={() => window.open(project.githubLink, "_blank")} 
+              width="100%"
+            />
+            <h2>{project.title}</h2>
+            <p>{project.description}</p>
+            <div className="chips">
+              {project.techStack.map((tech, idx) => (
+                <Chip key={idx} label={tech} className="chip" />
+              ))}
             </div>
-            <div className="project">
-                <a href="https://yujisatojr.itch.io/highspeedchase" target="_blank" rel="noreferrer"><img src={mock09} className="zoom" alt="thumbnail" width="100%"/></a>
-                <a href="https://yujisatojr.itch.io/highspeedchase" target="_blank" rel="noreferrer"><h2>High Speed Chase</h2></a>
-                <p>Designed, developed, and launched a 3D multiplayer racing game with C# and Unity. This is available on Itch.io for gamers worldwide to enjoy.</p>
-            </div>
-            <div className="project">
-                <a href="https://yujisatojr.itch.io/spacecraft" target="_blank" rel="noreferrer"><img src={mock08} className="zoom" alt="thumbnail" width="100%"/></a>
-                <a href="https://yujisatojr.itch.io/spacecraft" target="_blank" rel="noreferrer"><h2>Astro Raiders</h2></a>
-                <p>Developed and released a 2D shooting game with C# and Unity. This project is hosted on the Itch.io public marketplace.</p>
-            </div>
-            <div className="project">
-                <a href="https://www.datumlearn.com/" target="_blank" rel="noreferrer"><img src={mock07} className="zoom" alt="thumbnail" width="100%"/></a>
-                <a href="https://www.datumlearn.com/" target="_blank" rel="noreferrer"><h2>Datum: Integrated Learning Platform</h2></a>
-                <p>This is an online educational platform that provides high-quality, data science-focused learning resources in the Japanese language. I created the entire platform from scratch using Ruby on Rails.</p>
-            </div>
-            <div className="project">
-                <a href="http://www.wemanage.jp/" target="_blank" rel="noreferrer"><img src={mock06} className="zoom" alt="thumbnail" width="100%"/></a>
-                <a href="http://www.wemanage.jp/" target="_blank" rel="noreferrer"><h2>WeManage: Real Estate Asset Management</h2></a>
-                <p>This mobile application allows realtors in Japan to securely manage their property information and view future income predictions. This app is built with Ruby on Rails and JavaScript.</p>
-            </div>
-            <div className="project">
-                <a href="https://www.byuh.edu/covid-19-case-management" target="_blank" rel="noreferrer"><img src={mock05} className="zoom" alt="thumbnail" width="100%"/></a>
-                <a href="https://www.byuh.edu/covid-19-case-management" target="_blank" rel="noreferrer"><h2>COVID-19 Case Management</h2></a>
-                <p>Built official charts for COVID/vaccination tracking for an educational institution using JavaScript and the Google Sheets API v4. The dashboard served the university's leadership in their decision-making processes.</p>
-            </div>
-            <div className="project">
-                <a href="https://github.com/yujisatojr/multi-reg-analysis" target="_blank" rel="noreferrer"><img src={mock04} className="zoom" alt="thumbnail" width="100%"/></a>
-                <a href="https://github.com/yujisatojr/multi-reg-analysis" target="_blank" rel="noreferrer"><h2>Multiple Regression Property Analysis</h2></a>
-                <p>Analyzed the real estate market in Japan and predicted property prices by implementing statistical methods such as OLS and multi-regression analysis. This project leveraged Python and various libraries such as Pandas, NumPy, Matplotlib, and Scikit-Learn.</p>
-            </div>
-            <div className="project">
-                <a href="https://holokai.byuh.edu/programs-of-study" target="_blank" rel="noreferrer"><img src={mock03} className="zoom" alt="thumbnail" width="100%"/></a>
-                <a href="https://holokai.byuh.edu/programs-of-study" target="_blank" rel="noreferrer"><h2>Programs of Study</h2></a>
-                <p>Designed and developed a custom component for a CMS-based platform (e.g., 'Brightspot') using Java, Handlebars, and LESS. University students can find their majors of interest through this module.</p>
-            </div>
-            <div className="project">
-                <a href="https://hookele.byuh.edu/transfer-evaluation-guidelines-and-matrix" target="_blank" rel="noreferrer"><img src={mock02} className="zoom" alt="thumbnail" width="100%"/></a>
-                <a href="https://hookele.byuh.edu/transfer-evaluation-guidelines-and-matrix" target="_blank" rel="noreferrer"><h2>Transfer Evaluation Matrix</h2></a>
-                <p>Created an interactive CSV table generator with Java, Handlebars, and LESS. This project helps transfer students to quickly identify eligible credits.</p>
-            </div>
-            <div className="project">
-                <a href="https://github.com/yujisatojr/submeowrine" target="_blank" rel="noreferrer"><img src={mock01} className="zoom" alt="thumbnail" width="100%"/></a>
-                <a href="https://github.com/yujisatojr/submeowrine" target="_blank" rel="noreferrer"><h2>Submeowrine</h2></a>
-                <p>Developed and released an Android mobile application using Java and Android Studio that runs a 2D shooting game.</p>
-            </div>
-        </div>
+            <ul>
+              {project.details.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+            <Button 
+              variant="contained" 
+              color="primary" 
+              onClick={() => window.open(project.githubLink, "_blank")}
+            >
+              View on GitHub
+            </Button>
+          </div>
+        ))}
+      </div>
     </div>
-    );
+  );
 }
 
-export default Project;
+export default Projects;
