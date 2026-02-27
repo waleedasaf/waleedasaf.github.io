@@ -9,7 +9,7 @@ function Main() {
     <div className="container">
       <div className="about-section">
         <div className="image-wrapper">
-          <img src={profile1Img} alt="Avatar" />
+          <img src={profileImg} alt="Avatar" />
         </div>
         <div className="content">
           <div className="social_icons">
